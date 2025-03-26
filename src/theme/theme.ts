@@ -16,7 +16,9 @@ export const palette = {
   voidBlack: '#0A0A0A', // Fundo principal
   shadowGray: '#1A1A1A', // Superfícies
   steelGray: '#2D2D2D', // Bordas
+  lightSteelGray: '#3A3A3A', // Para fundos sobre surface
   ghostWhite: '#F0F0F0', // Texto
+  grayBlack: '#000000',
 
   // Novas cores para estados desabilitados
   disabledBackground: '#333333', // Fundo desativado
@@ -36,6 +38,7 @@ export const theme = createTheme({
     primary: palette.actionRed,
     secondary: palette.mysticPurple,
     accent: palette.cyberBlue,
+    black: palette.grayBlack,
 
     // Fundos
     background: palette.voidBlack,
