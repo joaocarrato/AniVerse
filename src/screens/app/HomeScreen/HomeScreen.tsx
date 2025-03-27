@@ -1,11 +1,27 @@
 import React from 'react';
+import {FlatList, ListRenderItemInfo} from 'react-native';
+
+import {TopAnime, useGetTopAnime} from '@domain';
 
 import {Screen} from '@components';
+import {AppStackScreenProps} from '@routes';
 
+import {AnimeCard} from './components/AnimeCard';
+import {HomeEmptyList} from './components/HomeEmptyList';
 import {HomeHeader} from './components/HomeHeader';
 import {HomeSectionTitle} from './components/HomeSectionTitle';
 
-export function HomeScreen() {
+export function HomeScreen({}: AppStackScreenProps<'HomeScreen'>) {
+  const {animes, isError, isLoading} = useGetTopAnime();
+
+  if (!animes?.data) {
+    return null;
+  }
+
+  function renderItem({item}: ListRenderItemInfo<TopAnime>) {
+    return <AnimeCard animes={item} />;
+  }
+
   return (
     <Screen scrollable>
       <HomeHeader />
@@ -14,6 +30,16 @@ export function HomeScreen() {
         title="Top Hits Anime"
         marginTop="s24"
         marginBottom="s12"
+      />
+
+      <FlatList
+        data={animes?.data}
+        keyExtractor={item => item.content}
+        ListEmptyComponent={
+          <HomeEmptyList isError={isError} isLoading={isLoading} />
+        }
+        renderItem={renderItem}
+        horizontal
       />
     </Screen>
   );
