@@ -3,10 +3,10 @@ import React from 'react';
 import {Screen, Text} from '@components';
 import {AppTabScreenProps} from '@routes';
 
-export function SearchScreen({}: AppTabScreenProps<'SearchScreen'>) {
+export function FavoritesScreen({}: AppTabScreenProps<'FavoritesScreen'>) {
   return (
     <Screen>
-      <Text>Search Screen</Text>
+      <Text>FavoritesScreen</Text>
     </Screen>
   );
 }

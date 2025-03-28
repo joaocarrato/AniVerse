@@ -13,7 +13,7 @@ export function HomeSectionTitle({title, onPress, ...rest}: Props) {
       <Text preset="headingSmall">{title}</Text>
       <TouchableBox onPress={onPress}>
         <Text preset="paragraphSmall" semiBold color="primary">
-          Veja todos
+          See all
         </Text>
       </TouchableBox>
     </Box>

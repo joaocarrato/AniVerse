@@ -4,14 +4,14 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 import {TopAnime, useGetTopAnime} from '@domain';
 
 import {Screen} from '@components';
-import {AppStackScreenProps} from '@routes';
+import {AppTabScreenProps} from '@routes';
 
 import {AnimeCard} from './components/AnimeCard';
 import {HomeEmptyList} from './components/HomeEmptyList';
 import {HomeHeader} from './components/HomeHeader';
 import {HomeSectionTitle} from './components/HomeSectionTitle';
 
-export function HomeScreen({navigation}: AppStackScreenProps<'HomeScreen'>) {
+export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
   const {animes, isError, isLoading} = useGetTopAnime();
 
   if (!animes?.data) {
@@ -32,7 +32,7 @@ export function HomeScreen({navigation}: AppStackScreenProps<'HomeScreen'>) {
   }
 
   return (
-    <Screen scrollable>
+    <Screen scrollable style={{paddingBottom: 0}}>
       <HomeHeader />
 
       <HomeSectionTitle
@@ -50,6 +50,12 @@ export function HomeScreen({navigation}: AppStackScreenProps<'HomeScreen'>) {
         }
         renderItem={renderItem}
         horizontal
+      />
+
+      <HomeSectionTitle
+        title="New Episode Releases"
+        marginTop="s24"
+        marginBottom="s12"
       />
     </Screen>
   );
