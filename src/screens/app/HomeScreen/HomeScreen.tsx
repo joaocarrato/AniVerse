@@ -42,6 +42,7 @@ export function HomeScreen({navigation}: AppStackScreenProps<'HomeScreen'>) {
       />
 
       <FlatList
+        showsHorizontalScrollIndicator={false}
         data={animes?.data}
         keyExtractor={item => item.content}
         ListEmptyComponent={

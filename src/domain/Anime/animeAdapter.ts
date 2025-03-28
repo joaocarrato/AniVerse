@@ -11,7 +11,7 @@ function toAnime(animeApi: AnimeAPI): Anime {
     },
     trailer: {
       ytUrl: animeApi.data.trailer.url,
-      imageUrl: animeApi.data.trailer.images.image_url,
+      imageUrl: animeApi.data.trailer.images.large_image_url,
     },
     titles: {
       original: animeApi.data.title_japanese,
