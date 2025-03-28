@@ -1,5 +1,10 @@
 import React from 'react';
-import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
+import {
+  ImageBackground,
+  ImageBackgroundProps,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from 'react-native';
 
 import {
   backgroundColor,
@@ -42,4 +47,21 @@ export const TouchableBox = createRestyleComponent<TouchableBoxProps, Theme>(
     layout,
   ],
   TouchableOpacity,
+);
+
+export type ImageBackgroundBoxProps = ImageBackgroundProps & RestyleProps;
+
+export const ImageBackgroundBox = createRestyleComponent<
+  ImageBackgroundBoxProps,
+  Theme
+>(
+  [
+    backgroundColor,
+    backgroundColorShorthand,
+    border,
+    spacing,
+    spacingShorthand,
+    layout,
+  ],
+  ImageBackground,
 );

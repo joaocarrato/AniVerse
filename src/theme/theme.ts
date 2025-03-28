@@ -66,6 +66,7 @@ export const theme = createTheme({
     disabled: palette.disabledBackground,
     disabledContrast: palette.disabledText,
     loading: palette.loadingIndicator,
+    opacity: 'rgba(0,0,0,0.5)',
 
     // Elementos Especiais
     gradientStart: palette.neonPink,
