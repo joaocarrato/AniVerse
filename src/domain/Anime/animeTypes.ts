@@ -14,6 +14,9 @@ export interface Anime {
     original: string;
     title: string;
   };
+  genres: Array<{
+    name: string;
+  }>;
   episodes: number;
   status: string;
   rating: string;

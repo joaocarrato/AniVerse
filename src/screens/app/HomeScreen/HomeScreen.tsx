@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {TopAnime, useGetTopAnime} from '@domain';
+import {useScrollToTop} from '@react-navigation/native';
 
 import {Screen} from '@components';
 import {AppTabScreenProps} from '@routes';
@@ -13,6 +14,10 @@ import {HomeSectionTitle} from './components/HomeSectionTitle';
 
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
   const {animes, isError, isLoading} = useGetTopAnime();
+
+  const flatListRef = useRef<FlatList<TopAnime>>(null);
+
+  useScrollToTop(flatListRef);
 
   if (!animes?.data) {
     return null;
@@ -42,6 +47,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
       />
 
       <FlatList
+        ref={flatListRef}
         showsHorizontalScrollIndicator={false}
         data={animes?.data}
         keyExtractor={item => item.content}

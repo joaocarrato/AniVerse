@@ -10,6 +10,7 @@ import {AppStackScreenProps} from '@routes';
 import {DetailsHeader} from './components/DetailsHeader';
 import {DetailsInfo} from './components/DetailsInfo';
 import {EpisodesCard} from './components/EpisodesCard';
+import {GenreCard} from './components/GenreCard';
 
 export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
   const animeId = route.params.id;
@@ -43,6 +44,15 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
       <DetailsHeader anime={anime} />
 
       <DetailsInfo anime={anime} />
+
+      <FlatList
+        data={anime.genres}
+        horizontal
+        scrollEnabled={false}
+        contentContainerStyle={{marginTop: 12}}
+        keyExtractor={item => item.name}
+        renderItem={({item}) => <GenreCard name={item.name} />}
+      />
 
       <Text my="s24" preset="paragraphSmall">
         {anime.synopsis}

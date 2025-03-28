@@ -17,6 +17,7 @@ function toAnime(animeApi: AnimeAPI): Anime {
       original: animeApi.data.title_japanese,
       title: animeApi.data.title,
     },
+    genres: animeApi.data.genres,
     favorites: animeApi.data.favorites ?? 0,
     episodes: animeApi.data.episodes,
     status: animeApi.data.status,
