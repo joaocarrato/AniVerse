@@ -7,6 +7,7 @@ import {BellIcon} from '../../assets/icons/BellIcon';
 import {BellOnIcon} from '../../assets/icons/BellOnIcon';
 import {BookmarkFillIcon} from '../../assets/icons/BookmarkFillIcon';
 import {BookmarkIcon} from '../../assets/icons/BookmarkIcon';
+import {CalendarIcon} from '../../assets/icons/CalendarIcon';
 import {CameraIcon} from '../../assets/icons/CameraIcon';
 import {ChatIcon} from '../../assets/icons/ChatIcon';
 import {ChatOnIcon} from '../../assets/icons/ChatOnIcon';
@@ -31,6 +32,8 @@ import {ProfileFillIcon} from '../../assets/icons/ProfileFillIcon';
 import {ProfileIcon} from '../../assets/icons/ProfileIcon';
 import {SearchIcon} from '../../assets/icons/SearchIcon';
 import {SettingsIcon} from '../../assets/icons/SettingsIcon';
+import {StarIcon} from '../../assets/icons/StarIcon';
+import {StarIconFill} from '../../assets/icons/StarIconFill';
 import {TrashIcon} from '../../assets/icons/TrashIcon';
 import {useAppTheme} from '../../hooks/useAppTheme';
 import {ThemeColors} from '../../theme/theme';
@@ -68,6 +71,7 @@ const iconRegistry = {
   bellOn: BellOnIcon,
   bookmark: BookmarkIcon,
   bookmarkFill: BookmarkFillIcon,
+  calendar: CalendarIcon,
   camera: CameraIcon,
   chat: ChatIcon,
   chatOn: ChatOnIcon,
@@ -92,6 +96,8 @@ const iconRegistry = {
   profileFill: ProfileFillIcon,
   search: SearchIcon,
   settings: SettingsIcon,
+  star: StarIcon,
+  starFill: StarIconFill,
   trash: TrashIcon,
 };
 

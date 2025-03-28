@@ -11,7 +11,7 @@ import {HomeEmptyList} from './components/HomeEmptyList';
 import {HomeHeader} from './components/HomeHeader';
 import {HomeSectionTitle} from './components/HomeSectionTitle';
 
-export function HomeScreen({}: AppStackScreenProps<'HomeScreen'>) {
+export function HomeScreen({navigation}: AppStackScreenProps<'HomeScreen'>) {
   const {animes, isError, isLoading} = useGetTopAnime();
 
   if (!animes?.data) {
@@ -19,7 +19,16 @@ export function HomeScreen({}: AppStackScreenProps<'HomeScreen'>) {
   }
 
   function renderItem({item}: ListRenderItemInfo<TopAnime>) {
-    return <AnimeCard animes={item} />;
+    return (
+      <AnimeCard
+        animes={item}
+        onPress={() =>
+          navigation.navigate('DetailsScreen', {
+            id: item.id,
+          })
+        }
+      />
+    );
   }
 
   return (
