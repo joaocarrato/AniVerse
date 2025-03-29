@@ -10,6 +10,7 @@
       "@routes": ["src/routes/"],
       "@screens": ["src/screens/"],
       "@services": ["src/services/"],
+      "@types": ["src/types/"],
       "@utils": ["src/utils/"],
       "@theme": ["src/theme/"]
     }

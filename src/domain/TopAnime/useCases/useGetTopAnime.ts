@@ -1,18 +1,10 @@
-import {PageAPI} from '@api';
 import {useQuery} from '@tanstack/react-query';
 import {QueryKeys} from '@utils';
 
 import {topAnimeService} from '../topAnimeService';
-import {TopAnime} from '../topAnimeTypes';
 
-interface UseGetTopAnimeReturn {
-  animes: PageAPI<TopAnime> | undefined;
-  isLoading: boolean;
-  isError: boolean;
-}
-
-export function useGetTopAnime(): UseGetTopAnimeReturn {
-  const {data, isLoading, isError, error} = useQuery({
+export function useGetTopAnime() {
+  const {data, isLoading, isError, error, refetch, isRefetching} = useQuery({
     queryKey: [QueryKeys.AnimeRecommendation],
     queryFn: () => topAnimeService.getList(),
     retry: 1,
@@ -27,5 +19,7 @@ export function useGetTopAnime(): UseGetTopAnimeReturn {
     animes: data,
     isLoading,
     isError,
+    refetch,
+    isRefetching,
   };
 }

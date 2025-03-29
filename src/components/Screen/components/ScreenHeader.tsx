@@ -24,7 +24,12 @@ export function ScreenHeader({canGoBack, title, iconName}: Props) {
             onPress={navigation.goBack}>
             <Icon name="arrowLeft" color="primary" />
             {title && (
-              <Text preset="paragraphLarge" semiBold ml="s12">
+              <Text
+                preset="paragraphLarge"
+                semiBold
+                ml="s12"
+                flexShrink={1}
+                textAlign="center">
                 {title}
               </Text>
             )}

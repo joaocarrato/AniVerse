@@ -4,7 +4,7 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 import {Episodes, useGetAnimeId, useGetEpisodeId} from '@domain';
 import {useScrollToTop} from '@react-navigation/native';
 
-import {Screen, Text} from '@components';
+import {ActivityIndicator, Box, Screen, Text} from '@components';
 import {AppStackScreenProps} from '@routes';
 
 import {DetailsHeader} from './components/DetailsHeader';
@@ -14,18 +14,22 @@ import {GenreCard} from './components/GenreCard';
 
 export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
   const animeId = route.params.id;
-  const {anime} = useGetAnimeId(animeId);
-  const {episodes} = useGetEpisodeId(animeId);
+  const {anime, isLoading} = useGetAnimeId(animeId);
+  const {episodes, isLoading: _isLoading} = useGetEpisodeId(animeId);
 
   const flatListRef = useRef<FlatList<Episodes>>(null);
 
   useScrollToTop(flatListRef);
 
-  if (!anime) {
-    return null;
+  if (isLoading || _isLoading) {
+    return (
+      <Box flex={1} justifyContent="center" alignItems="center" bg="background">
+        <ActivityIndicator size={30} color="hoverPrimary" />
+      </Box>
+    );
   }
 
-  if (!episodes) {
+  if (!anime || !episodes) {
     return null;
   }
 
