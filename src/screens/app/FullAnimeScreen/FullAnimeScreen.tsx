@@ -37,7 +37,7 @@ export function FullAnimeScreen({
         data={animes.data}
         keyExtractor={item => item.content}
         numColumns={2}
-        columnWrapperStyle={{justifyContent: 'space-around', marginBottom: 10}}
+        columnWrapperStyle={{justifyContent: 'space-between', marginBottom: 10}}
         renderItem={renderItem}
       />
     </Screen>

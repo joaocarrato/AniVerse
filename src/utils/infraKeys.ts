@@ -3,4 +3,5 @@ export enum QueryKeys {
   AnimeID = 'AnimeID',
   Episodes = 'Episodes',
   AnimeSearch = 'AnimeSearch',
+  RecentAnimes = 'RecentAnimes',
 }

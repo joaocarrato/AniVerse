@@ -1,10 +1,21 @@
 import React, {useRef} from 'react';
-import {FlatList, ListRenderItemInfo, RefreshControl} from 'react-native';
+import {
+  FlatList,
+  Image,
+  ListRenderItemInfo,
+  RefreshControl,
+} from 'react-native';
 
-import {TopAnime, useGetTopAnime} from '@domain';
+import {
+  RecentAnimes,
+  TopAnime,
+  useGetRecentAnimes,
+  useGetTopAnime,
+} from '@domain';
 import {useScrollToTop} from '@react-navigation/native';
 
-import {Screen} from '@components';
+import {Screen, TouchableBox} from '@components';
+import {useAppSafeArea} from '@hooks';
 import {AppTabScreenProps} from '@routes';
 
 import {AnimeCard} from './components/AnimeCard';
@@ -13,7 +24,9 @@ import {HomeHeader} from './components/HomeHeader';
 import {HomeSectionTitle} from './components/HomeSectionTitle';
 
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
+  const {bottom} = useAppSafeArea();
   const {animes, isError, isLoading, refetch} = useGetTopAnime();
+  const {recentAnimes} = useGetRecentAnimes();
 
   const flatListRef = useRef<FlatList<TopAnime>>(null);
 
@@ -36,8 +49,26 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
     );
   }
 
+  function renderRecentAnimes({item}: ListRenderItemInfo<RecentAnimes>) {
+    return (
+      <TouchableBox
+        marginRight="s12"
+        onPress={() =>
+          navigation.navigate('DetailsScreen', {
+            id: item.id,
+          })
+        }>
+        <Image
+          source={{uri: item.images.default}}
+          resizeMode="cover"
+          style={{height: 200, width: 140, borderRadius: 12}}
+        />
+      </TouchableBox>
+    );
+  }
+
   return (
-    <Screen scrollable style={{paddingBottom: 0}}>
+    <Screen style={{paddingBottom: 0}} scrollable>
       <HomeHeader />
 
       <HomeSectionTitle
@@ -50,25 +81,44 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
       />
 
       <FlatList
+        data={animes?.data}
         ref={flatListRef}
+        keyExtractor={item => item.content}
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        disableScrollViewPanResponder={true}
         refreshing={isLoading}
         refreshControl={
           <RefreshControl refreshing={isLoading} onRefresh={refetch} />
         }
-        showsHorizontalScrollIndicator={false}
-        data={animes?.data}
-        keyExtractor={item => item.content}
         ListEmptyComponent={
           <HomeEmptyList isError={isError} isLoading={isLoading} />
         }
         renderItem={renderItem}
-        horizontal
       />
 
       <HomeSectionTitle
         title="New Episode Releases"
         marginTop="s24"
         marginBottom="s12"
+        onPress={() =>
+          navigation.navigate('FullAnimeScreen', {
+            title: 'New Episode Releases',
+          })
+        }
+      />
+
+      <FlatList
+        data={recentAnimes?.data}
+        keyExtractor={item => item.title}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{paddingBottom: bottom}}
+        disableScrollViewPanResponder={true}
+        horizontal
+        ListEmptyComponent={
+          <HomeEmptyList isError={isError} isLoading={isLoading} />
+        }
+        renderItem={renderRecentAnimes}
       />
     </Screen>
   );

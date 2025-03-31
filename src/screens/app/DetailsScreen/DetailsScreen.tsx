@@ -1,10 +1,10 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {Episodes, useGetAnimeId, useGetEpisodeId} from '@domain';
 import {useScrollToTop} from '@react-navigation/native';
 
-import {ActivityIndicator, Box, Screen, Text} from '@components';
+import {ActivityIndicator, Box, Icon, Screen, Text} from '@components';
 import {AppStackScreenProps} from '@routes';
 
 import {DetailsHeader} from './components/DetailsHeader';
@@ -13,6 +13,7 @@ import {EpisodesCard} from './components/EpisodesCard';
 import {GenreCard} from './components/GenreCard';
 
 export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
+  const [isFavorited, setIsFavorited] = useState<boolean>(false);
   const animeId = route.params.id;
   const {anime, isLoading} = useGetAnimeId(animeId);
   const {episodes, isLoading: _isLoading} = useGetEpisodeId(animeId);
@@ -33,6 +34,10 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
     return null;
   }
 
+  function handleFavorite() {
+    setIsFavorited(prev => !prev);
+  }
+
   function renderItem({item}: ListRenderItemInfo<Episodes>) {
     return (
       <EpisodesCard trailerUrl={anime?.trailer.imageUrl} episodes={item} />
@@ -40,23 +45,28 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
   }
 
   return (
-    <Screen
-      canGoBack
-      title={anime?.titles.title}
-      iconName="bookmark"
-      scrollable>
+    <Screen canGoBack title={anime?.titles.title} scrollable>
       <DetailsHeader anime={anime} />
 
       <DetailsInfo anime={anime} />
 
-      <FlatList
-        data={anime.genres}
-        horizontal
-        scrollEnabled={false}
-        contentContainerStyle={{marginTop: 12}}
-        keyExtractor={item => item.name}
-        renderItem={({item}) => <GenreCard name={item.name} />}
-      />
+      <Box flexDirection="row" alignItems="center">
+        <FlatList
+          data={anime.genres}
+          horizontal
+          scrollEnabled={false}
+          contentContainerStyle={{marginTop: 12}}
+          keyExtractor={item => item.name}
+          renderItem={({item}) => <GenreCard name={item.name} />}
+        />
+
+        <Icon
+          name={isFavorited ? 'bookmarkFill' : 'bookmark'}
+          color="hoverSecondary"
+          size={22}
+          onPress={handleFavorite}
+        />
+      </Box>
 
       <Text my="s24" preset="paragraphSmall">
         {anime.synopsis}
