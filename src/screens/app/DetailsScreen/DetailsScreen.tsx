@@ -1,8 +1,9 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {Episodes, useGetAnimeId, useGetEpisodeId} from '@domain';
 import {useScrollToTop} from '@react-navigation/native';
+import {useFavoriteStore} from '@services';
 
 import {ActivityIndicator, Box, Icon, Screen, Text} from '@components';
 import {AppStackScreenProps} from '@routes';
@@ -13,10 +14,11 @@ import {EpisodesCard} from './components/EpisodesCard';
 import {GenreCard} from './components/GenreCard';
 
 export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
-  const [isFavorited, setIsFavorited] = useState<boolean>(false);
   const animeId = route.params.id;
+
   const {anime, isLoading} = useGetAnimeId(animeId);
   const {episodes, isLoading: _isLoading} = useGetEpisodeId(animeId);
+  const {addFavorite, isFavorite, removeFavorite} = useFavoriteStore();
 
   const flatListRef = useRef<FlatList<Episodes>>(null);
 
@@ -34,9 +36,17 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
     return null;
   }
 
-  function handleFavorite() {
-    setIsFavorited(prev => !prev);
-  }
+  const handleToggleFavorite = () => {
+    if (!anime) {
+      return;
+    }
+
+    if (isFavorite(anime.id)) {
+      removeFavorite(anime.id);
+    } else {
+      addFavorite(anime);
+    }
+  };
 
   function renderItem({item}: ListRenderItemInfo<Episodes>) {
     return (
@@ -61,10 +71,10 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
         />
 
         <Icon
-          name={isFavorited ? 'bookmarkFill' : 'bookmark'}
+          name={isFavorite(anime.id) ? 'bookmarkFill' : 'bookmark'}
           color="hoverSecondary"
           size={22}
-          onPress={handleFavorite}
+          onPress={handleToggleFavorite}
         />
       </Box>
 
