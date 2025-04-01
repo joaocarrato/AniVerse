@@ -1,5 +1,5 @@
 export enum QueryKeys {
-  AnimeRecommendation = 'AnimeRecommendation',
+  TopAnimes = 'TopAnimes',
   AnimeID = 'AnimeID',
   Episodes = 'Episodes',
   AnimeSearch = 'AnimeSearch',

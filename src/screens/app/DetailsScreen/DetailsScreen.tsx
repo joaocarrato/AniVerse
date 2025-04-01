@@ -17,7 +17,7 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
   const animeId = route.params.id;
 
   const {anime, isLoading} = useGetAnimeId(animeId);
-  const {episodes, isLoading: _isLoading} = useGetEpisodeId(animeId);
+  const {data: episodes, isLoading: _isLoading} = useGetEpisodeId(animeId);
   const {addFavorite, isFavorite, removeFavorite} = useFavoriteStore();
 
   const flatListRef = useRef<FlatList<Episodes>>(null);

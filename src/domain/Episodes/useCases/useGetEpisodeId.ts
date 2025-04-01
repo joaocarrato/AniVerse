@@ -1,19 +1,13 @@
-import {useQuery} from '@tanstack/react-query';
 import {QueryKeys} from '@utils';
 
+import {useFetchData} from '@hooks';
+
 import {episodesService} from '../episodesService';
+import {Episodes} from '../episodesTypes';
 
 export function useGetEpisodeId(id: number) {
-  const {data, isError, isLoading} = useQuery({
-    queryKey: [QueryKeys.Episodes, id],
-    queryFn: () => episodesService.getEpisodes(id),
-    retry: 1,
-    staleTime: 3 * 60 * 1000,
-  });
-
-  return {
-    episodes: data,
-    isError,
-    isLoading,
-  };
+  return useFetchData<Episodes>(
+    [QueryKeys.Episodes, id],
+    episodesService.getEpisodes,
+  );
 }

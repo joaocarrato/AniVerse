@@ -4,7 +4,7 @@ import {episodesAdapter} from './episodesAdapter';
 import {episodesApi} from './episodesApi';
 import {Episodes} from './episodesTypes';
 
-async function getEpisodes(id: number): Promise<PageAPI<Episodes>> {
+async function getEpisodes(id?: number): Promise<PageAPI<Episodes>> {
   const episodes = await episodesApi.getEpisodes(id);
 
   return {

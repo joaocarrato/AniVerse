@@ -1,25 +1,10 @@
-import {useQuery} from '@tanstack/react-query';
 import {QueryKeys} from '@utils';
 
+import {useFetchData} from '@hooks';
+
 import {topAnimeService} from '../topAnimeService';
+import {TopAnime} from '../topAnimeTypes';
 
 export function useGetTopAnime() {
-  const {data, isLoading, isError, error, refetch, isRefetching} = useQuery({
-    queryKey: [QueryKeys.AnimeRecommendation],
-    queryFn: () => topAnimeService.getList(),
-    retry: 1,
-    staleTime: 3 * 60 * 1000, // 3 minutes in milliseconds
-  });
-
-  if (error) {
-    console.error('Erro na requisição: ', error);
-  }
-
-  return {
-    animes: data,
-    isLoading,
-    isError,
-    refetch,
-    isRefetching,
-  };
+  return useFetchData<TopAnime>([QueryKeys.TopAnimes], topAnimeService.getList);
 }

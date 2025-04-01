@@ -12,7 +12,7 @@ export function FullAnimeScreen({
   navigation,
   route,
 }: AppStackScreenProps<'FullAnimeScreen'>) {
-  const {animes} = useGetTopAnime();
+  const {data: animes} = useGetTopAnime();
   const screenTitle = route.params.title;
 
   if (!animes) {

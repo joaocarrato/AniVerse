@@ -25,8 +25,8 @@ import {HomeSectionTitle} from './components/HomeSectionTitle';
 
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
   const {bottom} = useAppSafeArea();
-  const {animes, isError, isLoading, refetch} = useGetTopAnime();
-  const {recentAnimes} = useGetRecentAnimes();
+  const {data: animes, isError, isLoading, refetch} = useGetTopAnime();
+  const {data: recentAnimes} = useGetRecentAnimes();
 
   const flatListRef = useRef<FlatList<TopAnime>>(null);
 
@@ -59,7 +59,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
           })
         }>
         <Image
-          source={{uri: item.images.default}}
+          source={{uri: item.images.largeImage}}
           resizeMode="cover"
           style={{height: 200, width: 140, borderRadius: 12}}
         />
