@@ -1,13 +1,27 @@
 import {PageAPI} from '@api';
-import {useQuery} from '@tanstack/react-query';
+import {
+  QueryObserverResult,
+  RefetchOptions,
+  useQuery,
+} from '@tanstack/react-query';
+
+interface useFetchDataReturn<TData> {
+  data: PageAPI<TData> | undefined;
+  isLoading: boolean;
+  isError: boolean;
+  refetch: (
+    options?: RefetchOptions,
+  ) => Promise<QueryObserverResult<PageAPI<TData>, Error>>;
+  isRefetching: boolean;
+}
 
 export function useFetchData<Data>(
   queryKey: readonly unknown[],
-  getList: (id?: number) => Promise<PageAPI<Data>>,
-) {
+  getList: () => Promise<PageAPI<Data>>,
+): useFetchDataReturn<Data> {
   const {data, isLoading, isError, error, refetch, isRefetching} = useQuery({
     queryKey,
-    queryFn: () => getList(),
+    queryFn: getList,
     retry: 1,
     staleTime: 3 * 60 * 1000, // 3 minutes in milliseconds
   });
