@@ -15,6 +15,14 @@ interface useFetchDataReturn<TData> {
   isRefetching: boolean;
 }
 
+/**
+ * Fetches data using the provided query key and fetch function.
+ *
+ * @param queryKey - The unique key for the query, used for caching and identifying the query.
+ * @param getList - A function that returns a promise resolving to the data of type PageAPI<Data>.
+ * @returns An object containing the fetched data, loading state, error state, and refetch methods.
+ */
+
 export function useFetchData<Data>(
   queryKey: readonly unknown[],
   getList: () => Promise<PageAPI<Data>>,

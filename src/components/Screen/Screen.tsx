@@ -24,6 +24,7 @@ export function Screen({
   scrollable,
   title,
   iconName,
+  ...boxProps
 }: ScreenProps) {
   const {top, bottom} = useAppSafeArea();
   const {colors} = useAppTheme();
@@ -33,7 +34,10 @@ export function Screen({
       style={{flex: 1}}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Container backgroundColor={colors.background}>
-        <Box px="s24" style={[{paddingTop: top, paddingBottom: bottom}, style]}>
+        <Box
+          px="s24"
+          style={[{paddingTop: top, paddingBottom: bottom}, style]}
+          {...boxProps}>
           <ScreenHeader
             canGoBack={canGoBack}
             title={title}

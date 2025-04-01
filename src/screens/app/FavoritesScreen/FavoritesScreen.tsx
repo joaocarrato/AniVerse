@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ListRenderItemInfo} from 'react-native';
+import {FlatList, ListRenderItemInfo, StyleProp, ViewStyle} from 'react-native';
 
 import {Anime} from '@domain';
 import {useFavoriteStore} from '@services';
@@ -17,19 +17,28 @@ export function FavoritesScreen({}: AppTabScreenProps<'FavoritesScreen'>) {
   }
 
   return (
-    <Screen style={{paddingBottom: 0}}>
-      {!animes.length && (
-        <Box>
-          <Text>Você não tem nenhum favorito adicionado</Text>
-        </Box>
-      )}
-
+    <Screen style={$screen}>
       <FlatList
         data={animes}
         keyExtractor={item => item.id.toString()}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{flex: animes.length === 0 ? 1 : undefined}}
+        ListEmptyComponent={<ListEmpty />}
         renderItem={renderItem}
       />
     </Screen>
+  );
+}
+
+const $screen: StyleProp<ViewStyle> = {
+  paddingBottom: 0,
+  flex: 1,
+};
+
+function ListEmpty() {
+  return (
+    <Box flex={1} justifyContent="center" alignItems="center">
+      <Text>Nenhum anime favoritado 😢</Text>
+    </Box>
   );
 }
