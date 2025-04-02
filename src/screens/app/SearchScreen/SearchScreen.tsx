@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {AnimeSearch, useGetAnimeSearch} from '@domain';
 import {zodResolver} from '@hookform/resolvers/zod';
+import {useScrollToTop} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 
 import {FormTextInput, Screen} from '@components';
@@ -26,6 +27,10 @@ export function SearchScreen({navigation}: AppTabScreenProps<'SearchScreen'>) {
 
   const animeName = watch('animeName');
   const debouncedAnimeName = useDebounce(animeName, 500);
+
+  const flatListRef = useRef<FlatList<AnimeSearch>>(null);
+
+  useScrollToTop(flatListRef);
 
   const {
     data: anime,
@@ -59,6 +64,7 @@ export function SearchScreen({navigation}: AppTabScreenProps<'SearchScreen'>) {
         boxProps={{mb: 's12', mx: 's24'}}
       />
       <FlatList
+        ref={flatListRef}
         data={anime?.data}
         numColumns={3}
         contentContainerStyle={{
