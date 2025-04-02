@@ -1,10 +1,5 @@
 import React, {useRef} from 'react';
-import {
-  FlatList,
-  Image,
-  ListRenderItemInfo,
-  RefreshControl,
-} from 'react-native';
+import {FlatList, Image, ListRenderItemInfo} from 'react-native';
 
 import {
   RecentAnimes,
@@ -26,7 +21,7 @@ import {HomeSectionTitle} from './components/HomeSectionTitle';
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
   const {bottom} = useAppSafeArea();
   const {spacing} = useAppTheme();
-  const {data: animes, isError, isLoading, refetch} = useGetTopAnime();
+  const {data: animes, isError, isLoading} = useGetTopAnime();
   const {data: recentAnimes} = useGetRecentAnimes();
 
   const flatListRef = useRef<FlatList<TopAnime>>(null);
@@ -89,12 +84,9 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         keyExtractor={item => item.content}
         showsHorizontalScrollIndicator={false}
         horizontal
+        directionalLockEnabled={true}
         disableScrollViewPanResponder={true}
         contentContainerStyle={{paddingLeft: spacing.s24}}
-        refreshing={isLoading}
-        refreshControl={
-          <RefreshControl refreshing={isLoading} onRefresh={refetch} />
-        }
         ListEmptyComponent={
           <HomeEmptyList isError={isError} isLoading={isLoading} />
         }
@@ -120,6 +112,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
           paddingBottom: bottom,
           paddingLeft: spacing.s24,
         }}
+        directionalLockEnabled={true}
         disableScrollViewPanResponder={true}
         horizontal
         ListEmptyComponent={
