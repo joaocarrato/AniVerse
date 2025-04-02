@@ -6,3 +6,4 @@ export * from './ActivityIndicator/ActivityIndicator';
 export * from './Button/Button';
 export * from './TextInput/TextInput';
 export * from './PasswordInput/PasswordInput';
+export * from './Form/FormTextInput';

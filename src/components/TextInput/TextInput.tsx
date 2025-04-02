@@ -18,7 +18,7 @@ export interface TextInputProps extends RNTextInputProps {
   rightComponent?: React.ReactElement;
   errorMessage?: string;
   boxProps?: BoxProps;
-  label: string;
+  label?: string;
 }
 
 export function TextInput({

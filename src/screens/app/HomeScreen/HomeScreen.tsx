@@ -15,7 +15,7 @@ import {
 import {useScrollToTop} from '@react-navigation/native';
 
 import {Screen, TouchableBox} from '@components';
-import {useAppSafeArea} from '@hooks';
+import {useAppSafeArea, useAppTheme} from '@hooks';
 import {AppTabScreenProps} from '@routes';
 
 import {AnimeCard} from './components/AnimeCard';
@@ -25,10 +25,13 @@ import {HomeSectionTitle} from './components/HomeSectionTitle';
 
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
   const {bottom} = useAppSafeArea();
+  const {spacing} = useAppTheme();
   const {data: animes, isError, isLoading, refetch} = useGetTopAnime();
   const {data: recentAnimes} = useGetRecentAnimes();
 
   const flatListRef = useRef<FlatList<TopAnime>>(null);
+
+  const image = animes?.data[20]?.imagesUrl?.large || '';
 
   useScrollToTop(flatListRef);
 
@@ -68,8 +71,8 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
   }
 
   return (
-    <Screen style={{paddingBottom: 0}} scrollable>
-      <HomeHeader />
+    <Screen style={{paddingBottom: 0, paddingHorizontal: 0}} scrollable>
+      <HomeHeader image={{uri: image}} />
 
       <HomeSectionTitle
         title="Top Hits Anime"
@@ -87,6 +90,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         showsHorizontalScrollIndicator={false}
         horizontal
         disableScrollViewPanResponder={true}
+        contentContainerStyle={{paddingLeft: spacing.s24}}
         refreshing={isLoading}
         refreshControl={
           <RefreshControl refreshing={isLoading} onRefresh={refetch} />
@@ -112,7 +116,10 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         data={recentAnimes?.data}
         keyExtractor={item => item.title}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: bottom}}
+        contentContainerStyle={{
+          paddingBottom: bottom,
+          paddingLeft: spacing.s24,
+        }}
         disableScrollViewPanResponder={true}
         horizontal
         ListEmptyComponent={

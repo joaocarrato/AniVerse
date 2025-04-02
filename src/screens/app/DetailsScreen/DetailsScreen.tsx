@@ -15,10 +15,9 @@ import {GenreCard} from './components/GenreCard';
 
 export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
   const animeId = route.params.id;
-  console.log(animeId);
-
   const {anime, isLoading} = useGetAnimeId(animeId);
-  const {episodes, isLoading: _isLoading} = useGetEpisodeId(animeId);
+  const {episodes, isLoading: _isLoading, isError} = useGetEpisodeId(animeId);
+  console.log(episodes);
   const {addFavorite, isFavorite, removeFavorite} = useFavoriteStore();
 
   const flatListRef = useRef<FlatList<Episodes>>(null);
@@ -37,7 +36,7 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
     return null;
   }
 
-  const handleToggleFavorite = () => {
+  function handleToggleFavorite() {
     if (!anime) {
       return;
     }
@@ -47,7 +46,7 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
     } else {
       addFavorite(anime);
     }
-  };
+  }
 
   function renderItem({item}: ListRenderItemInfo<Episodes>) {
     return (
@@ -85,14 +84,19 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
 
       <Text>{anime.background}</Text>
 
-      <Text preset="headingSmall" my="s12">
-        Episodes
-      </Text>
+      {episodes.data.length > 0 && (
+        <Text preset="headingSmall" my="s12">
+          Episodes
+        </Text>
+      )}
+
+      {isError && <Text>Error while fetching episodes</Text>}
 
       <FlatList
+        data={episodes.data}
         ref={flatListRef}
         horizontal
-        data={episodes.data}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
       />

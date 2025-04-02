@@ -24,4 +24,5 @@ const $boxWrapper: BoxProps = {
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
+  paddingHorizontal: 's24',
 };

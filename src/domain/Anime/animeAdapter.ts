@@ -1,7 +1,6 @@
-import {Anime, AnimeAPI} from './animeTypes';
+import {dummyImage} from '@utils';
 
-const DUMMY_IMAGE =
-  'https://i.pinimg.com/736x/64/90/28/6490282cfed2f4f35c85325ae74b1ca7.jpg';
+import {Anime, AnimeAPI} from './animeTypes';
 
 function toAnime(animeApi: AnimeAPI): Anime {
   return {
@@ -14,7 +13,8 @@ function toAnime(animeApi: AnimeAPI): Anime {
     },
     trailer: {
       ytUrl: animeApi.data.trailer.url,
-      imageUrl: animeApi.data.trailer.images.large_image_url || DUMMY_IMAGE,
+      imageUrl:
+        animeApi.data.trailer.images.large_image_url || dummyImage.imageUrl,
     },
     titles: {
       original: animeApi.data.title_japanese,

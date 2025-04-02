@@ -4,6 +4,7 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 import {TopAnime, useGetTopAnime} from '@domain';
 
 import {Screen} from '@components';
+import {useAppSafeArea} from '@hooks';
 import {AppStackScreenProps} from '@routes';
 
 import {AnimeCard} from '../HomeScreen/components/AnimeCard';
@@ -12,6 +13,7 @@ export function FullAnimeScreen({
   navigation,
   route,
 }: AppStackScreenProps<'FullAnimeScreen'>) {
+  const {bottom} = useAppSafeArea();
   const {data: animes} = useGetTopAnime();
   const screenTitle = route.params.title;
 
@@ -22,6 +24,7 @@ export function FullAnimeScreen({
   function renderItem({item}: ListRenderItemInfo<TopAnime>) {
     return (
       <AnimeCard
+        preset="secondary"
         animes={item}
         onPress={() =>
           navigation.navigate('DetailsScreen', {
@@ -32,11 +35,12 @@ export function FullAnimeScreen({
     );
   }
   return (
-    <Screen canGoBack title={screenTitle}>
+    <Screen canGoBack title={screenTitle} style={{paddingHorizontal: 0}}>
       <FlatList
         data={animes.data}
         keyExtractor={item => item.content}
-        numColumns={2}
+        numColumns={3}
+        contentContainerStyle={{paddingBottom: bottom}}
         columnWrapperStyle={{justifyContent: 'space-between', marginBottom: 10}}
         renderItem={renderItem}
       />

@@ -38,7 +38,7 @@ const $screen: StyleProp<ViewStyle> = {
 function ListEmpty() {
   return (
     <Box flex={1} justifyContent="center" alignItems="center">
-      <Text>Nenhum anime favoritado 😢</Text>
+      <Text>No favorite anime 😢</Text>
     </Box>
   );
 }

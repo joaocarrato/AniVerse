@@ -7,6 +7,8 @@ import {Episodes} from './episodesTypes';
 async function getEpisodes(id: number): Promise<PageAPI<Episodes>> {
   const episodes = await episodesApi.getEpisodes(id);
 
+  console.log('Serviço: ', episodes.data);
+
   return {
     pagination: episodes.pagination,
     data: episodes.data.map(episodesAdapter.toEpisode),
