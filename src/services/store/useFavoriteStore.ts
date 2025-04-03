@@ -1,7 +1,8 @@
 import {Anime} from '@domain';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
+
+import {storage} from '../storage/storage';
 
 interface UseFavoriteProps {
   animes: Anime[];
@@ -27,17 +28,8 @@ export const useFavoriteStore = create<UseFavoriteProps>()(
       isFavorite: id => get().animes.some(a => a.id === id),
     }),
     {
-      name: 'favorite-store',
-      storage: {
-        getItem: async name => {
-          const value = await AsyncStorage.getItem(name);
-          return value ? JSON.parse(value) : null;
-        },
-        setItem: async (name, value) => {
-          await AsyncStorage.setItem(name, JSON.stringify(value));
-        },
-        removeItem: AsyncStorage.removeItem,
-      },
+      name: '@FavoriteStore',
+      storage: storage,
     },
   ),
 );

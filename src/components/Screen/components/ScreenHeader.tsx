@@ -14,7 +14,6 @@ export function ScreenHeader({canGoBack, title, iconName}: Props) {
     <>
       {canGoBack && (
         <Box
-          px="s24"
           mb="s12"
           flexDirection="row"
           alignItems="center"
