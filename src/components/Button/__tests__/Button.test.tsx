@@ -68,4 +68,39 @@ describe('<Button />', () => {
 
     expect(titleStyle.color).toEqual(theme.colors.disabledText);
   });
+
+  test('the button should be gray when disabled', () => {
+    render(<Button title="Button title" testID="buttonTestID" disabled />);
+
+    const buttonElement = screen.getByTestId(/buttonTestID/i);
+    const buttonStyle = StyleSheet.flatten(buttonElement.props.style);
+
+    expect(buttonStyle.backgroundColor).toEqual(
+      theme.colors.disabledBackground,
+    );
+  });
+
+  describe('when button is loading:', () => {
+    it('shows activity indicator', () => {
+      render(<Button title="button title" loading />);
+
+      const loadingElement = screen.queryByTestId(/activity-indicator/i);
+
+      expect(loadingElement).toBeTruthy();
+    });
+
+    it('hides button title', () => {
+      render(<Button title="button title" loading />);
+
+      const textElement = screen.queryByText(/button title/i);
+      expect(textElement).toBeFalsy();
+    });
+
+    it('disable onPress function', () => {
+      const mockedOnPress = jest.fn();
+      render(<Button title="button title" onPress={mockedOnPress} loading />);
+
+      expect(mockedOnPress).not.toHaveBeenCalled();
+    });
+  });
 });

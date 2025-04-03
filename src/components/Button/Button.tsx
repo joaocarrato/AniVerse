@@ -25,6 +25,7 @@ export function Button({
     : buttonPresets.enabled;
   return (
     <TouchableBox
+      testID="button"
       disabled={loading || disabled}
       {...buttonProps}
       {...buttonPreset.container}
