@@ -8,7 +8,7 @@ import {buttonPresets} from './buttonPresets';
 
 export type ButtonPresets = 'enabled' | 'disabled';
 
-interface ButtonProps extends TouchableBoxProps {
+export interface ButtonProps extends TouchableBoxProps {
   title: string;
   loading?: boolean;
   disabled?: boolean;

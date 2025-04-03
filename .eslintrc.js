@@ -4,7 +4,12 @@ module.exports = {
   plugins: ['import', '@tanstack/query'],
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: [
+        '*.ts',
+        '*.tsx',
+        '**/__tests__/**/*.[jt]s?(x)',
+        '**/?(*.)+(spec|test).[jt]s?(x)',
+      ],
       rules: {
         'import/order': [
           'error',
