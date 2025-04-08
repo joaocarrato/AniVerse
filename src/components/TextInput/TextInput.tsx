@@ -75,6 +75,7 @@ export function TextInput({
 }
 
 const $textInputStyle: StyleProp<TextStyle> = {
+  includeFontPadding: false,
   padding: 0,
   flexShrink: 1,
   flexGrow: 1,

@@ -60,25 +60,30 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
 
       <DetailsInfo anime={anime} />
 
-      <Box flexDirection="row" alignItems="center">
-        <FlatList
-          data={anime.genres}
-          horizontal
-          scrollEnabled={false}
-          contentContainerStyle={{marginTop: 12}}
-          keyExtractor={item => item.name}
-          renderItem={({item}) => <GenreCard name={item.name} />}
-        />
+      <Box
+        flexDirection="row"
+        alignItems="flex-start"
+        flexWrap="wrap"
+        marginTop="s12">
+        {/* Gêneros */}
+        <Box flexDirection="row" flexWrap="wrap" flex={1}>
+          {anime.genres.map(genre => (
+            <GenreCard key={genre.name} name={genre.name} mb="s8" />
+          ))}
+        </Box>
 
-        <Icon
-          name={isFavorite(anime.id) ? 'bookmarkFill' : 'bookmark'}
-          color="hoverSecondary"
-          size={22}
-          onPress={handleToggleFavorite}
-        />
+        {/* Ícone de favorito */}
+        <Box marginLeft="s8">
+          <Icon
+            name={isFavorite(anime.id) ? 'bookmarkFill' : 'bookmark'}
+            color="hoverSecondary"
+            size={22}
+            onPress={handleToggleFavorite}
+          />
+        </Box>
       </Box>
 
-      <Text my="s24" preset="paragraphSmall">
+      <Text mb="s24" mt="s12" preset="paragraphSmall">
         {anime.synopsis}
       </Text>
 
@@ -97,6 +102,7 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
         ref={flatListRef}
         horizontal
         showsHorizontalScrollIndicator={false}
+        style={{marginRight: -24}}
         keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
       />
