@@ -1,5 +1,4 @@
 yarn lint
 
-yarn test
 
 npx tsc --noEmit

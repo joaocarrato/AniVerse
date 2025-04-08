@@ -9,6 +9,8 @@ import {AppStackScreenProps} from '@routes';
 
 import {AnimeCard} from '../HomeScreen/components/AnimeCard';
 
+import {FullAnimeHeader} from './components/FullAnimeHeader';
+
 export function FullAnimeScreen({
   navigation,
   route,
@@ -35,8 +37,9 @@ export function FullAnimeScreen({
     );
   }
   return (
-    <Screen canGoBack title={screenTitle} style={{paddingHorizontal: 0}}>
+    <Screen style={{paddingHorizontal: 0}}>
       <FlatList
+        ListHeaderComponent={<FullAnimeHeader title={screenTitle} />}
         data={animes.data}
         keyExtractor={item => item.content}
         numColumns={3}

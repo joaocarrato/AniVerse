@@ -4,7 +4,6 @@ import {recentAnimesAdapter} from './recentAnimesAdapter';
 import {recentAnimeApi} from './recentAnimesApi';
 import {RecentAnimes} from './recentAnimesTypes';
 
-// Função utilitária para filtrar animes únicos
 function filterUniqueAnimes(animes: RecentAnimes[]): RecentAnimes[] {
   const seenIds = new Set<number>();
 
@@ -20,10 +19,8 @@ function filterUniqueAnimes(animes: RecentAnimes[]): RecentAnimes[] {
 async function getList(): Promise<PageAPI<RecentAnimes>> {
   const recentAnimesPage = await recentAnimeApi.getList();
 
-  // 1. Adapta os dados
   const adaptedList = recentAnimesAdapter.toList(recentAnimesPage.data);
 
-  // 2. Filtra duplicados
   const uniqueAnimes = filterUniqueAnimes(adaptedList);
 
   return {

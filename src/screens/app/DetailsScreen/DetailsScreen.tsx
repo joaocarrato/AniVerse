@@ -3,7 +3,7 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {Episodes, useGetAnimeId, useGetEpisodeId} from '@domain';
 import {useScrollToTop} from '@react-navigation/native';
-import {useFavoriteStore} from '@services';
+import {useFavoriteStore, useToast} from '@services';
 
 import {ActivityIndicator, Box, Icon, Screen, Text} from '@components';
 import {AppStackScreenProps} from '@routes';
@@ -17,8 +17,8 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
   const animeId = route.params.id;
   const {anime, isLoading} = useGetAnimeId(animeId);
   const {episodes, isLoading: _isLoading, isError} = useGetEpisodeId(animeId);
-  console.log(episodes);
   const {addFavorite, isFavorite, removeFavorite} = useFavoriteStore();
+  const {showToast} = useToast();
 
   const flatListRef = useRef<FlatList<Episodes>>(null);
 
@@ -43,7 +43,9 @@ export function DetailsScreen({route}: AppStackScreenProps<'DetailsScreen'>) {
 
     if (isFavorite(anime.id)) {
       removeFavorite(anime.id);
+      showToast({message: 'Anime Removed'});
     } else {
+      showToast({message: 'Anime favorited!'});
       addFavorite(anime);
     }
   }

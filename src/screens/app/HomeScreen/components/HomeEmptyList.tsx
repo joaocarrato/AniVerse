@@ -10,7 +10,7 @@ type Props = {
 export function HomeEmptyList({isError, isLoading}: Props) {
   if (isError) {
     <Box flex={1} justifyContent="center" alignItems="center">
-      <Text>Erro ao encontrar animes</Text>
+      <Text>Error finding animes</Text>
     </Box>;
   }
 
@@ -22,7 +22,7 @@ export function HomeEmptyList({isError, isLoading}: Props) {
 
   return (
     <Box flex={1} justifyContent="center" alignItems="center">
-      <Text>Nenhum anime disponível</Text>
+      <Text>No anime available</Text>
     </Box>
   );
 }

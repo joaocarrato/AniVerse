@@ -7,3 +7,4 @@ export * from './Button/Button';
 export * from './TextInput/TextInput';
 export * from './PasswordInput/PasswordInput';
 export * from './Form/FormTextInput';
+export * from './Toast/Toast';

@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList, ListRenderItemInfo, StyleProp, ViewStyle} from 'react-native';
 
 import {Anime} from '@domain';
-import {useFavoriteStore} from '@services';
+import {useFavoriteStore, useToast} from '@services';
 
 import {Box, Screen, Text} from '@components';
 import {AppTabScreenProps} from '@routes';
@@ -11,9 +11,17 @@ import {AnimeCard} from './components/AnimeCard';
 
 export function FavoritesScreen({}: AppTabScreenProps<'FavoritesScreen'>) {
   const {animes, removeFavorite} = useFavoriteStore();
+  const {showToast} = useToast();
+
+  function handleRemoveFavorite(id: number) {
+    removeFavorite(id);
+    showToast({message: 'Anime Removed'});
+  }
 
   function renderItem({item}: ListRenderItemInfo<Anime>) {
-    return <AnimeCard anime={item} onPress={() => removeFavorite(item.id)} />;
+    return (
+      <AnimeCard anime={item} onPress={() => handleRemoveFavorite(item.id)} />
+    );
   }
 
   return (
