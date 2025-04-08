@@ -16,8 +16,6 @@ jest.mock('@react-navigation/native', () => {
 describe('<HomeSectionTitle />', () => {
   it('should render component', () => {
     render(<HomeSectionTitle title="Home Section Title" />);
-
-    screen.debug();
   });
 
   it('Should display see all text', () => {
