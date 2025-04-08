@@ -1,6 +1,6 @@
 jest.mock('react-native-bootsplash', () => {
   return {
-    hide: jest.fn().mockResolvedValue(),
+    hide: jest.fn().mockImplementation(() => Promise.resolve()),
     isVisible: jest.fn().mockResolvedValue(true),
     useHideAnimation: jest.fn().mockReturnValue({
       container: {},
