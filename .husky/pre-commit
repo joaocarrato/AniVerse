@@ -1,4 +1,3 @@
 yarn lint
 
-
 npx tsc --noEmit
