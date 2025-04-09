@@ -28,7 +28,7 @@ export function Toast() {
   }
 
   return (
-    <Box {...$boxStyle} top={100} opacity={0.95}>
+    <Box {...$boxStyle} top={90} opacity={0.95}>
       <Icon {...mapTypeToIcon[type]} />
       <Text flexShrink={1} ml="s16" bold>
         {toast.message}
@@ -49,7 +49,7 @@ const mapTypeToIcon: Record<ToastType, IconProps> = {
 };
 
 const $boxStyle: BoxProps = {
-  bg: 'surfaceElevated',
+  bg: 'surface',
   position: 'absolute',
   p: 's16',
   borderRadius: 's16',
