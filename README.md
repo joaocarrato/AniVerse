@@ -1,97 +1,79 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+![Logo do projeto](https://i.imgur.com/vLF2LWb.png) ![Logo do projeto](https://imgur.com/bWRcSQc.png) ![Logo do projeto](https://imgur.com/JbC3cOY.png) ![Logo do projeto](https://imgur.com/4rgugd4.png)
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+# AniVerse
 
-## Step 1: Start Metro
+Aplicativo para amante de animes, onde você consegue ter acesso aos animes em alta, últimos episódios lançados e também procurar por um anime especifico e ter acesso a sua sinopse, episódios, ano de publicação.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+<hr style="border: 1px solid #ccc; margin: 20px 0;" />
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### ⚙️ Pré-requisitos
 
-```sh
-# Using npm
-npm start
 
-# OR using Yarn
-yarn start
+```
+IDE - Visual Studio Code
+Package Manager - Yarn/NPM
+Node
+Cocoapods - IOS
+Java - Android
+```
+<hr style="border: 1px solid #ccc; margin: 20px 0;" />
+
+### 🔨 Guia de instalação
+
+Faça o clone desse repósitorio e abra com sua IDE de preferência. Depois disso é só seguir os comandos.
+
+Etapas para instalar:
+
+```
+yarn install
+```
+Passo 2:
+```
+cd ios && pod install
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+Passo 3:
+```
+yarn android || yarn ios
 ```
 
-### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## 🛠️ Executando os testes
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```
+yarn test
 ```
 
-Then, and every time you update your native dependencies, run:
+## 📦 Tecnologias usadas:
 
-```sh
-bundle exec pod install
-```
+* ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+* ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+* ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+* ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+* ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
+* ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
+* ![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+**Front-end:**
+* [React Native](https://reactnative.dev/)
+* [Restyle](https://shopify.github.io/restyle/)
+* [React Navigation](https://reactnavigation.org/)
+* [Tanstack Query](https://tanstack.com/query/latest)
+* [Axios](https://axios-http.com/ptbr/docs/intro)
+* [MMKV](https://github.com/mrousavy/react-native-mmkv)
+* [Zustand](https://zustand-demo.pmnd.rs/)
 
-```sh
-# Using npm
-npm run ios
+## 👷 Autores
 
-# OR using Yarn
-yarn ios
-```
+* **João Carrato** - *Frontend do projeto* - [@joaocarrato](https://github.com/joaocarrato)
+* **Jikan** - *Backend* - [Jikan API](https://jikan.moe/)
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 📄 Licença
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+Esse projeto está sob a licença (MIT License) - acesse os detalhes [LICENSE.md](https://github.com/joaocarrato/AniVerse/blob/main/LICENSE.md).
 
-## Step 3: Modify your app
+## 💡 Expressões de gratidão
 
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+* Para suporte, mande um email para joaocarrato18@gmail.com.
+* [Meu linkedin](https://www.linkedin.com/in/joaocarrato/)
