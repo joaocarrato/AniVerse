@@ -20,15 +20,11 @@ describe('<FullAnimeHeader />', () => {
     screen.debug();
   });
 
-  //   it('Should go back to previous page', () => {
-  //     const title = 'Top Hits Anime';
-  //     render(<FullAnimeHeader title={title} />);
+  it('should display screen title', () => {
+    const title = 'Top Hits anime';
+    render(<FullAnimeHeader title={title} />);
 
-  //     const buttonElement = screen.getByTestId(/button/i);
-  //     fireEvent.press(buttonElement);
-
-  //     // expect(mockedNavigate).toHaveBeenCalledTimes(1);
-
-  //     screen.debug();
-  //   });
+    const textElement = screen.getByText(title);
+    expect(textElement).toBeTruthy();
+  });
 });
