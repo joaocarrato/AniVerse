@@ -73,9 +73,6 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         title="Top Hits Anime"
         marginTop="s24"
         marginBottom="s12"
-        onPress={() =>
-          navigation.navigate('FullAnimeScreen', {title: 'Top Hits Anime'})
-        }
       />
 
       <FlatList
@@ -97,11 +94,6 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         title="New Episode Releases"
         marginTop="s24"
         marginBottom="s12"
-        onPress={() =>
-          navigation.navigate('FullAnimeScreen', {
-            title: 'New Episode Releases',
-          })
-        }
       />
 
       <FlatList

@@ -1,17 +1,24 @@
 import React from 'react';
 
+import {useNavigation} from '@react-navigation/native';
+
 import {Box, BoxProps, Text, TouchableBox} from '@components';
 
 type Props = {
   title: string;
-  onPress?: () => void;
 } & Pick<BoxProps, 'marginTop' | 'marginBottom' | 'marginVertical'>;
 
-export function HomeSectionTitle({title, onPress, ...rest}: Props) {
+export function HomeSectionTitle({title, ...rest}: Props) {
+  const navigation = useNavigation();
   return (
     <Box {...$boxWrapper} {...rest}>
       <Text preset="headingSmall">{title}</Text>
-      <TouchableBox onPress={onPress}>
+      <TouchableBox
+        onPress={() =>
+          navigation.navigate('FullAnimeScreen', {
+            title,
+          })
+        }>
         <Text preset="paragraphSmall" semiBold color="primary">
           See all
         </Text>
