@@ -5,11 +5,13 @@ import {Anime} from '@domain';
 import {useFavoriteStore, useToast} from '@services';
 
 import {Box, Screen, Text} from '@components';
+import {useAppSafeArea} from '@hooks';
 import {AppTabScreenProps} from '@routes';
 
 import {AnimeCard} from './components/AnimeCard';
 
 export function FavoritesScreen({}: AppTabScreenProps<'FavoritesScreen'>) {
+  const {top} = useAppSafeArea();
   const {animes, removeFavorite} = useFavoriteStore();
   const {showToast} = useToast();
 
@@ -30,7 +32,10 @@ export function FavoritesScreen({}: AppTabScreenProps<'FavoritesScreen'>) {
         data={animes}
         keyExtractor={item => item.id.toString()}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{flex: animes.length === 0 ? 1 : undefined}}
+        contentContainerStyle={{
+          flex: animes.length === 0 ? 1 : undefined,
+          paddingTop: top,
+        }}
         ListEmptyComponent={<ListEmpty />}
         renderItem={renderItem}
       />

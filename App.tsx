@@ -4,7 +4,7 @@ if (__DEV__) {
 
 import React from 'react';
 
-import {ToastProvider} from '@services';
+import {initializeStorage, MMKVStorage, ToastProvider} from '@services';
 import {ThemeProvider} from '@shopify/restyle';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -12,6 +12,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Toast} from '@components';
 import {Routes} from '@routes';
 import {theme} from '@theme';
+
+initializeStorage(MMKVStorage);
 
 const queryClient = new QueryClient();
 

@@ -8,6 +8,7 @@ import {
   useGetTopAnime,
 } from '@domain';
 import {useScrollToTop} from '@react-navigation/native';
+import {filterList} from '@utils';
 
 import {Screen, TouchableBox} from '@components';
 import {useAppSafeArea, useAppTheme} from '@hooks';
@@ -30,9 +31,13 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
 
   useScrollToTop(flatListRef);
 
-  if (!animes?.data) {
+  if (!animes?.data || !recentAnimes?.data) {
     return null;
   }
+
+  const filteredAnimeList = filterList.filterListByUniqueId(animes);
+
+  const filteredRecentAnimes = filterList.filterListByUniqueId(recentAnimes);
 
   function renderItem({item}: ListRenderItemInfo<TopAnime>) {
     return (
@@ -76,9 +81,9 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
       />
 
       <FlatList
-        data={animes?.data}
+        data={filteredAnimeList}
         ref={flatListRef}
-        keyExtractor={item => item.content}
+        keyExtractor={item => item.id.toString()}
         showsHorizontalScrollIndicator={false}
         horizontal
         directionalLockEnabled={true}
@@ -97,8 +102,8 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
       />
 
       <FlatList
-        data={recentAnimes?.data}
-        keyExtractor={item => item.title}
+        data={filteredRecentAnimes}
+        keyExtractor={item => item.id.toString()}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
           paddingBottom: bottom,

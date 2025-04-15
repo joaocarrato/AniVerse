@@ -18,7 +18,7 @@ interface Props {
 export function HomeHeader({image}: Props) {
   return (
     <Box>
-      <Image source={image} style={$imageStyle} resizeMode="cover" />
+      <Image source={image} style={$imageStyle} resizeMode="contain" />
     </Box>
   );
 }
