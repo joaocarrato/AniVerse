@@ -28,7 +28,7 @@ export const useFavoriteStore = create<UseFavoriteProps>()(
       isFavorite: id => get().animes.some(a => a.id === id),
     }),
     {
-      name: '@FavoriteStore',
+      name: '@Favorites',
       storage: storage,
     },
   ),

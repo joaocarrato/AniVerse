@@ -4,10 +4,7 @@ import {Controller, FieldValues, UseControllerProps} from 'react-hook-form';
 
 import {TextInput, TextInputProps} from '../TextInput/TextInput';
 
-type SRTextInputProps = Omit<
-  TextInputProps,
-  'value' | 'onChangeText' | 'errorMessage'
->;
+type SRTextInputProps = Omit<TextInputProps, 'value' | 'onChangeText'>;
 
 export function FormTextInput<FormType extends FieldValues>({
   control,
